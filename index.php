@@ -1,4 +1,3 @@
-
 <?php
  $db = mysqli_connect('wiad5ra41q8129zn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com','wxxl4ykpjxita1zv','ntyxgfb9x2dpyr4x','nn63dg6ksfqti6ih')
  or die('Error connecting to MySQL server.');
@@ -27,7 +26,18 @@
     <section id="home">
       <!-- NAVIGATION BAR ------------------>
        <div class="nav-container"> 
-        <div id="nav-name"> Andrea Dias </div> <!-- ADDS NAME TO LEFT HAND SIDE -->
+        <div id="nav-name"> <?php
+					$query = "SELECT * FROM users WHERE id IN (2, 3) ";
+					mysqli_query($db, $query) or die('Error querying database.');
+
+					$result = mysqli_query($db, $query);
+					$row = mysqli_fetch_array($result);
+
+					while ($row = mysqli_fetch_array($result)) {
+ 					echo $row['displayName'];
+					}
+					
+				?> </div> <!-- ADDS NAME TO LEFT HAND SIDE -->
        	<div id="nav-links"> <!-- LINKS ON RIGHT HAND SIDE -->   
           <ul>
             <li><a href="#home">Home</a></li>
@@ -40,7 +50,19 @@
     <!-- FRONT PAGE - HI IM ____ -------------->
       <div class= "container">
     			<h2> Hi, I'm </h2>
-    			<h1> Andrea Dias <br>
+    			<h1>
+    			<?php
+					$query = "SELECT * FROM users WHERE id IN (2, 3) ";
+					mysqli_query($db, $query) or die('Error querying database.');
+
+					$result = mysqli_query($db, $query);
+					$row = mysqli_fetch_array($result);
+
+					while ($row = mysqli_fetch_array($result)) {
+ 					echo $row['displayName'];
+					}
+					
+				?>	 <br>
     			<a href="#education" class="button">Thanks for stopping by.</a> </h1>
     	</div>
     	
@@ -52,9 +74,20 @@
       	<div class= "container">
       	<hr>
     		<h5>Education</h5>
-    		<p>Oregon State University</p>
-    		<p>Degree: B.S. in Computer Science</p>
-    		<p>Graduation date: June 2019</p>
+    		<p>
+				<?php
+					$query = "SELECT * FROM users WHERE id IN (2, 3) ";
+					mysqli_query($db, $query) or die('Error querying database.');
+
+					$result = mysqli_query($db, $query);
+					$row = mysqli_fetch_array($result);
+
+					while ($row = mysqli_fetch_array($result)) {
+ 					echo $row['schoolName'] . ' <br />' . $row['degree'] . '<br /> ' . $row['gradDate'] .'<br />';
+					}
+					
+				?>		
+			</p>
       </div>
     </section>
     <!-------- PORTFOLIO SECTION ----------------->
@@ -65,8 +98,8 @@
     		
     	<!-- source for image layout: https://codepen.io/SitePoint/pen/bEvVqP -->
   		<div class="images"> 
-    			<a href="https://res.cloudinary.com/foliospace/image/upload/v1559599367/testing/boat.jpg" >
-    			<figure>
+    		<a href="https://res.cloudinary.com/foliospace/image/upload/v1559599367/testing/boat.jpg" >
+    		<figure>
     			<img src="https://res.cloudinary.com/foliospace/image/upload/v1559599367/testing/boat.jpg"	alt="boat.jpg">
 				<figcaption>
         			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
@@ -74,9 +107,10 @@
     		</figure>
     		</a>
     			
-				<a href="https://res.cloudinary.com/foliospace/image/upload/v1559599367/testing/boat.jpg" >
-    			<figure>
+			<a href="https://res.cloudinary.com/foliospace/image/upload/v1559599367/testing/boat.jpg" >
+    		<figure>
     			<img src="https://res.cloudinary.com/foliospace/image/upload/v1559599367/testing/boat.jpg"	alt="boat2.jpg">
+    			
 				<figcaption>
         			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
       			</figcaption>
@@ -84,9 +118,10 @@
     		</a>
     			
     		
-    			<a href="https://res.cloudinary.com/foliospace/image/upload/v1559599367/testing/boat.jpg" >
-    			<figure>
+    		<a href="https://res.cloudinary.com/foliospace/image/upload/v1559599367/testing/boat.jpg" >
+    		<figure>
     			<img src="https://res.cloudinary.com/foliospace/image/upload/v1559599367/testing/boat.jpg"	alt="boat3.jpg">
+    			
 				<figcaption>
     				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
     			</figcaption>
@@ -94,9 +129,10 @@
     		</a>
     			
     		
-    			<a href="https://res.cloudinary.com/foliospace/image/upload/v1559599367/testing/boat.jpg" >
-    			<figure>
+    		<a href="https://res.cloudinary.com/foliospace/image/upload/v1559599367/testing/boat.jpg" >
+    		<figure>
     			<img src="https://res.cloudinary.com/foliospace/image/upload/v1559599367/testing/boat.jpg"	alt="boat4.jpg">
+    			
 				<figcaption>
         			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
       			</figcaption>
@@ -111,30 +147,24 @@
     	<div class= "container">
     	<hr>
     		<h5>Contact</h5>
-    		<p>diasan@oregonstate.edu</p>
-      		<p>https://www.linkedin.com/in/andrea-dias-7106b251/</p>
+    		
+    		<p>
+				<?php
+					$query = "SELECT * FROM users WHERE id IN (2, 3) ";
+					mysqli_query($db, $query) or die('Error querying database.');
+
+					$result = mysqli_query($db, $query);
+					$row = mysqli_fetch_array($result);
+
+					while ($row = mysqli_fetch_array($result)) {
+ 					echo $row['userEmail'] . ' <br />' . $row['linkedinURL'] . '<br /> ' . $row['githubURL'] .'<br />';
+					}
+					mysqli_close($db);
+					?>		
+			</p>
+
       	</div>
-      	
-      	
-      	     <!-- DATABASE TEST -------------->
-     
-<?php
-$query = "SELECT * FROM users";
-mysqli_query($db, $query) or die('Error querying database.');
-
-$result = mysqli_query($db, $query);
-$row = mysqli_fetch_array($result);
-
-while ($row = mysqli_fetch_array($result)) {
- echo $row['id'] . ' ' . $row['userName'] . ': ' . $row['userEmail'] . ' ' . $row['userUrl'] .'<br />';
-}
-mysqli_close($db);
-?>		
-					
-
-					
-   <!-- end DATABASE TEST -------------->
-      	
+      	      	
       	
     </section>
     <!--- JS stuff  ------------------->
